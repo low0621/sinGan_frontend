@@ -19,34 +19,34 @@ $: if(source && target&&mask) {
 
 <!--  input.mb-4(name='source' type='file' bind:files='{source}')-->
 <!--  input.mb-4(name='target' type='file' bind:files='{target}')-->
-.inline-block.content-centers
+.inline-block.content-centers.mb-4
   .inline-block.content-centers
     .mb-5.content-centers
-      img.border-solid.border-4.border-light-blue-500.object-contain.h-40.w-40(id="img1" src="#" alt="img1_name")
+      img.border-solid.border-4.border-light-blue-500.object-contain.h-40.w-40(id="img1" src="src/assets/noimage.gif" alt="img1_name")
     label.mx-6.my-3.w-50.px-5.py-2.bg-white.rounded-md.shadow-md.tracking-wide.uppercase.border.border-blue.cursor-pointer.text-blue-600.ease-linear.transition-all.duration-150(class="hover:bg-blue-600 hover:text-white")
-      i.fas.fa-cloud-upload-alt.fa-3x 
-      span.mt-4.text-base.leading-normal image1
+      i.fas.fa-cloud-upload-alt.fa-3x
+      span.mt-4.text-base.leading-normal Source
       input.hidden(type='file' bind:files='{source}' onchange="document.getElementById('img1').src = window.URL.createObjectURL(this.files[0])")
   .inline-block.content-centers.mx-5
     .mb-5
-      img.border-solid.border-4.border-light-blue-500.object-contain.h-40.w-40(id="img2" src="#" alt="img2_name")
+      img.border-solid.border-4.border-light-blue-500.object-contain.h-40.w-40(id="img2" src="src/assets/noimage.gif" alt="img2_name")
     label.mx-6.items-center.my-3.w-50.px-5.py-2.bg-white.rounded-md.shadow-md.tracking-wide.uppercase.border.border-blue.cursor-pointer.text-blue-600.ease-linear.transition-all.duration-150(class="hover:bg-blue-600 hover:text-white")
-      i.fas.fa-cloud-upload-alt.fa-3x 
-      span.mt-2.text-base.leading-normal image2
+      i.fas.fa-cloud-upload-alt.fa-3x
+      span.mt-2.text-base.leading-normal Target
       input.hidden(type='file' bind:files='{target}' onchange="document.getElementById('img2').src = window.URL.createObjectURL(this.files[0])")
   .inline-block.content-centers
     .mb-5
-      img.border-solid.border-4.border-light-blue-500.object-contain.h-40.w-40(id="img3" src="#" alt="img3_name")
+      img.border-solid.border-4.border-light-blue-500.object-contain.h-40.w-40(id="img3" src="src/assets/noimage.gif" alt="img3_name")
     label.mx-6.items-center.my-3.w-50.px-5.py-2.bg-white.rounded-md.shadow-md.tracking-wide.uppercase.border.border-blue.cursor-pointer.text-blue-600.ease-linear.transition-all.duration-150(class="hover:bg-blue-600 hover:text-white")
-      i.fas.fa-cloud-upload-alt.fa-3x 
-      span.mt-2.text-base.leading-normal image3
+      i.fas.fa-cloud-upload-alt.fa-3x
+      span.mt-2.text-base.leading-normal Mask
       input.hidden(type='file' bind:files='{mask}' onchange="document.getElementById('img3').src = window.URL.createObjectURL(this.files[0])")
-.inline-block.content-centers
-  span.mr-2 Scale
-  input.mt-4.mb-2.px-4.py-2.rounded-lg.border.border-gray-300.text-xs.w-20(type='number' class='focus:outline-none focus:ring-2 focus:ring-gray-200' bind:value='{value.scale}')
-.inline-block.content-centers
-  span.mr-2 Path
-  input.mb-4.px-4.py-2.rounded-lg.border.border-gray-300.text-xs.w-30(type='text' bind:value='{value.path}' class='focus:outline-none focus:ring-2 focus:ring-gray-200')
+.flex.flex-col.items-center.content-centers
+  span Scale
+  input.text-center.my-2.px-4.py-2.rounded-lg.border.border-gray-300.text-xs.w-20(type='number' class='focus:outline-none focus:ring-2 focus:ring-gray-200' bind:value='{value.scale}')
+.flex.flex-col.items-center.content-centers
+  span Path
+  input.text-center.mt-2.mb-4.px-4.py-2.rounded-lg.border.border-gray-300.text-xs.w-30(type='text' bind:value='{value.path}' class='focus:outline-none focus:ring-2 focus:ring-gray-200')
 </template>
 
 <style>
