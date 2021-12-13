@@ -3,10 +3,11 @@ import { onMount } from 'svelte'
 import ThreeInputs from './component/ThreeInputs.svelte'
 import SuperResolution from './component/SuperResolution.svelte'
 import Animation from './component/Animation.svelte'
+import Paint2Image from './component/Paint2Image.svelte'
 
 let currentMode = 'Paint2Image'
 let components = {
-  "Paint2Image": ThreeInputs,
+  "Paint2Image": Paint2Image,
   "Editing": ThreeInputs,
   "Harmonization": ThreeInputs,
   "SuperResolution": SuperResolution,
@@ -18,6 +19,7 @@ let status
 let initial
 let props
 let url
+let stoplog
 let serverURL = `${import.meta.env.VITE_SERVER_URL}:${import.meta.env.VITE_SERVER_PORT}`
 
 
@@ -34,6 +36,18 @@ const submit = () => {
   })
   .then( result => {
     getProgress()
+  })
+}
+
+
+const stop = () => {
+  fetch(`${serverURL}/stop`)
+  .then(res => {
+    return res.text()
+  })
+  .then(result => {
+    stoplog = result
+    console.log(stoplog)
   })
 }
 
@@ -94,7 +108,7 @@ onMount(async () => {
           div Training complete!!
         +elseif('status == "done"')
           div Output complete!!
-    .w-full.flex.flex-col.items-center(class!='{status != "done" ? "opacity-50 pointer-events-none" : ""}')
+    .w-full.flex.flex-col.items-center(class!='{status != "done" && status != "ready"? "opacity-50 pointer-events-none" : ""}')
       .inline-flex.justify-between.mb-4.w-full
         +each('modes as mode')
           input.appearance-none.cursor-pointer.border.border-blue-400.flex.justify-center.py-2.mr-2(class='last:mr-0 w-1/5 hover:bg-blue-400 hover:text-white' class!='{currentMode == mode ? "bg-blue-400 text-white" : ""}' type='radio' name='mode' on:click!='{() => currentMode = mode}' label='{mode}' checked='{currentMode == mode}')
@@ -102,6 +116,7 @@ onMount(async () => {
           //-   input.mr-1(type='radio' name='mode' on:click!='{() => currentMode = mode}' value='{mode}')
       svelte:component(this='{components[currentMode]}' bind:value='{props}')
       button.bg-blue-500.text-white.font-bold.py-2.px-4(class='w-28 hover:bg-blue-700 rounded' on:click='{submit}') Submit
+    button.my-3.bg-blue-500.text-white.font-bold.py-2.px-4(class='w-28 hover:bg-blue-700 rounded' on:click='{stop}') Stop
 </template>
 
 <style>
