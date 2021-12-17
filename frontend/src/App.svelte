@@ -94,8 +94,8 @@ const imageChange = e => {
 onMount(async () => {
   getProgress()
   getStatus()
-  // const interval = setInterval(function() {getProgress()}, 1000)
-  // const interval2 = setInterval(function() {getStatus()}, 1000)
+  const interval = setInterval(function() {getProgress()}, 1000)
+  const interval2 = setInterval(function() {getStatus()}, 1000)
 })
 </script>
 
