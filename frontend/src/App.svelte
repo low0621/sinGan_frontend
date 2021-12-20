@@ -65,6 +65,17 @@ const getStatus = () => {
   })
 }
 
+const stop = () => {
+  fetch(`${serverURL}/stop`)
+  .then(res => {
+    return res.text()
+  })
+  .then(result => {
+    stoplog = result
+    console.log("stop button push!")
+  })
+}
+
 const getBaseLog = (x, y) => {
   return Math.log(y) / Math.log(x);
 }
@@ -118,7 +129,7 @@ onMount(async () => {
               .eras.text-blue Scale
               input.eras.text-center.px-4.py-2.rounded-lg.border.border-blue.text-xs.w-20(type='number' class='focus:outline-none' min=1 max='{maxScale}' bind:value='{scale}')
             button.eras.bg-purple.text-white.font-bold.mb-8.py-2.rounded(class!='{_status != "done" ? "opacity-30 pointer-events-none" : ""}' on:click!='{submit}') Submit
-            button.eras.bg-purple.text-white.font-bold.py-2.rounded(class!='{_status == "done" ? "opacity-30 pointer-events-none" : ""}') Stop
+            button.eras.bg-purple.text-white.font-bold.py-2.rounded(class!='{_status == "done" ? "opacity-30 pointer-events-none" : ""}'  on:click!='{stop}') Stop
       .flex.flex-col(class='w-8/12')
         .mb-4.eras.text-purple Output
         .w-full.border.border-purple.rounded.mb-2(class='h-2/3')
