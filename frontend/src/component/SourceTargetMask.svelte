@@ -7,11 +7,11 @@ export let maxScale
 
 let source, target, mask
 
-$: if (source && target){
+$: if (source && target && mask){
   props = {
-    image1: source,
-    image2: target,
-    image3: mask
+    image1: source[0].name,
+    image2: target[0].name,
+    image3: mask[0].name
   }
 }
 

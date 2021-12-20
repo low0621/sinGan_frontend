@@ -30,7 +30,6 @@ const submit = () => {
     default:
       props['scale'] = scale
   }
-
   fetch(`${serverURL}/${currentMode}`, {
     body: JSON.stringify(props),
     headers: {

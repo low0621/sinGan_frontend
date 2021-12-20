@@ -9,7 +9,7 @@ let source
 
 $: if (source && target){
   props = {
-    image1: source,
+    image1: source[0].name,
   }
 }
 
