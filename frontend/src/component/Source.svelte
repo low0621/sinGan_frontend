@@ -7,7 +7,7 @@ export let maxScale
 
 let source
 
-$: if (source && target){
+$: if (source){
   props = {
     image1: source[0].name,
   }
