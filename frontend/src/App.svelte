@@ -72,7 +72,6 @@ const stop = () => {
   })
   .then(result => {
     stoplog = result
-    console.log("stop button push!")
   })
 }
 
@@ -111,7 +110,7 @@ onMount(async () => {
 
 <template lang='pug'>
 .w-screen.h-screen.bg-white
-  .h-full.box-border.pt-10.pb-24.mx-auto(class='w-10/12')
+  .h-full.box-border.pt-10.pb-10.mx-auto(class='w-10/12')
     .mb-8
       .text-4xl.mb-4.eras.text-blue SinGAN
       div.w-full
@@ -132,8 +131,16 @@ onMount(async () => {
             button.eras.bg-purple.text-white.font-bold.py-2.rounded(class!='{_status == "done" ? "opacity-30 pointer-events-none" : ""}'  on:click!='{stop}') Stop
       .flex.flex-col(class='w-8/12')
         .mb-4.eras.text-purple Output
-        .w-full.border.border-purple.rounded.mb-2(class='h-2/3')
-        .w-full.flex(class='h-1/3' class!='{_status != "done" ? "opacity-30 pointer-events-none" : ""}')
+        .w-full.box-border.p-2.border.border-purple.rounded.mb-2(class='h-3/5')
+          +if('_status == "done" && progress == "100%"')
+            p.eras Done !!
+            +elseif('_status == "done" && progress == "0%"')
+              p.eras Ready for training !!
+            +elseif('progress != "100%"')
+              p.eras Training ...
+            +elseif('progress == "100%"')
+              p.eras Image processing ...
+        .w-full.flex(class='h-2/5' class!='{_status != "done" ? "opacity-30 pointer-events-none" : ""}')
           svelte:component(this='{components[currentMode]}' bind:props='{props}' bind:maxScale='{maxScale}')
 </template>
 
