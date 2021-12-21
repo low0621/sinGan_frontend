@@ -131,14 +131,14 @@ onMount(async () => {
           .flex.flex-col(class='w-1/2')
             .flex.flex-col.mb-8(class!='{_status != "done" ? "opacity-30 pointer-events-none" : ""}')
               .flex.justify-between.mb-2
-                .eras.text-blue Scale
-                input.eras.text-center.px-4.py-2.rounded-lg.border.border-blue.text-xs.w-20(type='number' class='focus:outline-none' min=1 max='{maxScale}' bind:value='{scale}')
+                .eras.text-blue(class!='{currentMode == "RandomSample" ? "opacity-30 pointer-events-none" : ""}') Scale
+                input.eras.text-center.px-4.py-2.rounded-lg.border.border-blue.text-xs.w-20(type='number' class='focus:outline-none' min=1 max='{maxScale}' bind:value='{scale}' class!='{currentMode == "RandomSample" ? "opacity-30 pointer-events-none" : ""}')
               .flex.justify-between.mb-2
                 .eras.text-blue(class!='{currentMode != "RandomSample" ? "opacity-30 pointer-events-none" : ""}') Width
-                input.eras.text-center.px-4.py-2.rounded-lg.border.border-blue.text-xs.w-20(type='number' class='focus:outline-none' min=1 bind:value='{width}' class!='{currentMode != "RandomSample" ? "opacity-30 pointer-events-none" : ""}')
+                input.eras.text-center.px-4.py-2.rounded-lg.border.border-blue.text-xs.w-20(type='number' class='focus:outline-none' min=0.1 max=10 step=0.1 bind:value='{width}' class!='{currentMode != "RandomSample" ? "opacity-30 pointer-events-none" : ""}')
               .flex.justify-between
                 .eras.text-blue(class!='{currentMode != "RandomSample" ? "opacity-30 pointer-events-none" : ""}') Height
-                input.eras.text-center.px-4.py-2.rounded-lg.border.border-blue.text-xs.w-20(type='number' class='focus:outline-none' min=1 bind:value='{height}' class!='{currentMode != "RandomSample" ? "opacity-30 pointer-events-none" : ""}')
+                input.eras.text-center.px-4.py-2.rounded-lg.border.border-blue.text-xs.w-20(type='number' class='focus:outline-none' min=0.1 max=10 step=0.1 bind:value='{height}' class!='{currentMode != "RandomSample" ? "opacity-30 pointer-events-none" : ""}')
             button.eras.bg-purple.text-white.font-bold.mb-8.py-2.rounded(class!='{_status != "done" ? "opacity-30 pointer-events-none" : ""}' on:click!='{submit}') Submit
             button.eras.bg-purple.text-white.font-bold.py-2.rounded(class!='{_status == "done" ? "opacity-30 pointer-events-none" : ""}'  on:click!='{stop}') Stop
       .flex.flex-col(class='w-8/12')
